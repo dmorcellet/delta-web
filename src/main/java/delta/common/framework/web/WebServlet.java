@@ -15,6 +15,11 @@ import delta.common.framework.web.utils.WebLoggers;
 import delta.common.utils.time.chronometers.Chronometer;
 import delta.common.utils.time.chronometers.ChronometerManager;
 
+/**
+ * Web servlet.
+ * An HTTP servlet that uses a web application to handle HTTP requests.
+ * @author DAM
+ */
 public abstract class WebServlet extends HttpServlet
 {
   private static final Logger _logger=WebLoggers.getWebLogger();
@@ -22,6 +27,9 @@ public abstract class WebServlet extends HttpServlet
   private static final String USER_CONTEXT="USER_CONTEXT";
   private WebApplication _application;
 
+  /**
+   * Constructor.
+   */
   public WebServlet()
   {
     super();
@@ -41,21 +49,18 @@ public abstract class WebServlet extends HttpServlet
     handleRequest(request,response);
   }
 
-  private void handleRequest(HttpServletRequest request, HttpServletResponse response)
+  private void handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
 	throws IOException, ServletException
   {
     ChronometerManager cm=ChronometerManager.getInstance();
     Chronometer c=cm.start("REQUEST");
     try
     {
-      String action=request.getParameter("ACTION");
-      if (action!=null)
-      {
-        WebUserContext context=getUserContext(request);
-        WebRequestParameters parameters=new WebRequestParameters(context,request);
-        context.useParameters(parameters);
-        _application.handleAction(action,parameters,response);
-      }
+      WebUserContext context=getUserContext(httpServletRequest);
+      WebRequest request=new HttpWebRequest(httpServletRequest,context);
+      context.useParameters(request.getParameters());
+      RequestResponse response=new ServletRequestResponse(httpServletResponse);
+      _application.handleRequest(context,request,response);
     }
     catch(IOException ioException)
     {
@@ -67,8 +72,6 @@ public abstract class WebServlet extends HttpServlet
     }
     cm.stop(c);
     cm.dump();
-    //System.gc();
-    //new StatsDumper.ResetDelta();
   }
 
   @Override

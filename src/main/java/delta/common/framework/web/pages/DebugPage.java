@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Enumeration;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import delta.common.framework.web.HttpRequestParameters;
 import delta.common.framework.web.WebPage;
 import delta.common.framework.web.WebPageTools;
 import delta.common.framework.web.WebUserContext;
@@ -19,6 +19,9 @@ import delta.common.framework.web.WebUserContext;
  */
 public class DebugPage extends WebPage
 {
+  /**
+   * Debug action name.
+   */
   public static final String DEBUG_ACTION="DEBUG";
 
   @Override
@@ -31,9 +34,10 @@ public class DebugPage extends WebPage
     HttpSession session=context.getHttpSession();
 
     // Print session info
+    pw.println("<H1>Session</H1>");
+    pw.println("<div>");
+    if (session!=null)
     {
-      pw.println("<H1>Session</H1>");
-      pw.println("<div>");
       Date created=new Date(session.getCreationTime());
       Date accessed=new Date(session.getLastAccessedTime());
       pw.println("ID "+session.getId());pw.println("<br>");
@@ -47,10 +51,14 @@ public class DebugPage extends WebPage
         String value=session.getAttribute(name).toString();
         pw.println(name+" = "+value);pw.println("<br>");
       }
-      pw.println("</div>");
     }
+    else
+    {
+      pw.println("No session!");pw.println("<br>");
+    }
+    pw.println("</div>");
 
-    ServletRequest request=_parameters.getRequest();
+    Object request=_request.getParameter(HttpRequestParameters.HTTP_REQUEST_PARAM);
     HttpServletRequest httpRequest=null;
     if (request instanceof HttpServletRequest)
     {

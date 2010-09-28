@@ -3,6 +3,7 @@ package delta.common.framework.web;
 import javax.servlet.http.HttpSession;
 
 import delta.common.utils.Parameters;
+import delta.common.utils.ParametersNode;
 
 /**
  * Context for a Web application user.
@@ -10,6 +11,10 @@ import delta.common.utils.Parameters;
  */
 public class WebUserContext extends Parameters
 {
+  /**
+   * Name of the parameter that stores the user context.
+   */
+  public static final String USER_CONTEXT_PARAM="USER_CONTEXT";
   private WebApplication _application;
   private HttpSession _httpSession;
 
@@ -54,7 +59,7 @@ public class WebUserContext extends Parameters
    * Use the parameters contained in the given request.
    * @param requestParameters Request parameters.
    */
-  public void useParameters(WebRequestParameters requestParameters)
+  public void useParameters(ParametersNode requestParameters)
   {
     // Nothing special to do here
     // Override to handle request -> user context parameter setting.

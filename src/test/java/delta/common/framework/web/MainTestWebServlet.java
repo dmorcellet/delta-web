@@ -1,7 +1,5 @@
 package delta.common.framework.web;
 
-import java.io.PrintWriter;
-
 import org.apache.log4j.Logger;
 
 import delta.common.framework.web.utils.WebLoggers;
@@ -11,7 +9,7 @@ public class MainTestWebServlet
 {
   private static final Logger _logger=WebLoggers.getWebLogger();
 
-  private String _action="NAME_INDEX";
+  private String _action="PLACES";
   private WebApplication _app;
 
   public void go()
@@ -20,15 +18,21 @@ public class MainTestWebServlet
     try
     {
       _app.initApplication();
-      WebUserContext context=_app.buildUserContext();
-      WebRequestParameters p=new WebRequestParameters(context,null);
-      PrintWriter pw=new PrintWriter(System.out);
-      /**
-       * @todo Handle binary/text pages
-       */
-      _app.handleAction(_action,p,null);
+      WebUserContext userContext=_app.buildUserContext();
+      SimpleRequest request=new SimpleRequest(userContext);
+      request.putStringParameter(WebRequest.ACTION_PARAM,_action);
+      SimpleRequestResponse response=new SimpleRequestResponse(null);
+      try
+      {
+        _app.handleRequest(userContext,request,response);
+      }
+      catch(Exception e)
+      {
+        _logger.error("Page generation error",e);
+      }
+      String text=response.getTextResponse();
+      System.out.println(text);
       _app.closeApplication();
-      pw.flush();
     }
     catch(Exception e)
     {

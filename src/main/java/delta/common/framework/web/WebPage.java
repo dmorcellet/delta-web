@@ -10,16 +10,22 @@ import java.io.PrintWriter;
 public abstract class WebPage
 {
   private WebApplication _application;
-  protected WebRequestParameters _parameters;
+  private WebUserContext _context;
+  protected WebRequest _request;
 
   void setApplication(WebApplication app)
   {
     _application=app;
   }
 
-  void setParameters(WebRequestParameters parameters)
+  void setUserContext(WebUserContext context)
   {
-    _parameters=parameters;
+    _context=context;
+  }
+
+  void setRequest(WebRequest request)
+  {
+    _request=request;
   }
 
   /**
@@ -37,34 +43,60 @@ public abstract class WebPage
    */
   public WebUserContext getUserContext()
   {
-    return _parameters.getUserContext();
+    return _context;
   }
 
+  /**
+   * Implementation of the 'parse parameters' phase of page generation.
+   * @throws Exception
+   */
   public void parseParameters() throws Exception
   {
     // Nothing to do for a null web page
   }
 
+  /**
+   * Implementation of the 'fetch data' phase of page generation.
+   * @throws Exception
+   */
   public void fetchData() throws Exception
   {
     // Nothing to do for a null web page
   }
 
+  /**
+   * Get the MIME type of the generated contents.
+   * @return a MIME type.
+   */
   public String getMIMEType()
   {
     return "text/html";
   }
 
+  /**
+   * Indicates if this page generates some binary contents,
+   * or not.
+   * @return <code>true</code> for binary contents, <code>false</code> for
+   * textual contents.
+   */
   public boolean isBinary()
   {
     return false;
   }
 
+  /**
+   * Generate the contents of this page in the given writer.
+   * @param pw Output writer.
+   */
   public void generate(PrintWriter pw)
   {
     // Nothing to do for a null web page
   }
 
+  /**
+   * Generate the contents of this page in the given stream.
+   * @param os Output stream.
+   */
   public void generate(OutputStream os)
   {
     // Nothing to do for a null web page
