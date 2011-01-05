@@ -28,6 +28,11 @@ public class PageParameters
     return _appname;
   }
 
+  public void setParameter(String paramName, Object value)
+  {
+    _parameters.put(paramName,value);
+  }
+
   public String build()
   {
     StringBuilder sb=new StringBuilder(getApplicationName());
