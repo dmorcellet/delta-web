@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import delta.common.framework.application.Application;
 import delta.common.framework.web.utils.WebLoggers;
 import delta.common.utils.time.chronometers.Chronometer;
 import delta.common.utils.time.chronometers.ChronometerManager;
@@ -77,7 +76,6 @@ public abstract class WebServlet extends HttpServlet
   @Override
   public void init() throws ServletException
   {
-    Application.getInstance().start();
     ChronometerManager cm=ChronometerManager.getInstance();
     Chronometer c=cm.start("INIT");
     try
