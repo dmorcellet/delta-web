@@ -55,7 +55,7 @@ public class ParameterFinder
    * @param defaultValue Default value, returned if the node does not contain a value. 
    * @return A long value.
    */
-  public static long getLongParameter(ParametersNode node, String name, long defaultValue)
+  public static Long getLongParameter(ParametersNode node, String name, Long defaultValue)
   {
     return getLongParameter(node,name,defaultValue,true);
   }
@@ -68,21 +68,21 @@ public class ParameterFinder
    * @param useParent Use parent nodes if any, or not. 
    * @return A long value.
    */
-  public static long getLongParameter(ParametersNode node, String name, long defaultValue, boolean useParent)
+  public static Long getLongParameter(ParametersNode node, String name, Long defaultValue, boolean useParent)
   {
-    long ret=defaultValue;
+    Long ret=defaultValue;
     Object pValue=getParameter(node,name,true);
     if (pValue!=null)
     {
       if (pValue instanceof Long)
       {
-        ret=((Long)pValue).longValue();
+        ret=(Long)pValue;
       }
       else if (pValue instanceof String)
       {
         try
         {
-          ret=Long.parseLong((String)pValue);
+          ret=Long.valueOf((String)pValue);
         }
         catch(NumberFormatException nfe)
         {
