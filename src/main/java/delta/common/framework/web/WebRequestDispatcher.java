@@ -8,12 +8,19 @@ import delta.common.framework.web.pages.DebugPage;
 import delta.common.framework.web.pages.LoginPage;
 import delta.common.framework.web.utils.WebLoggers;
 
+/**
+ * Dispatcher for web requests.
+ * @author DAM
+ */
 public class WebRequestDispatcher
 {
   private static final Logger _logger=WebLoggers.getWebLogger();
 
   private HashMap<String,Class<? extends WebPage>> _actionToPage;
 
+  /**
+   * Constructor.
+   */
   public WebRequestDispatcher()
   {
     _actionToPage=new HashMap<String,Class<? extends WebPage>>();
@@ -21,6 +28,11 @@ public class WebRequestDispatcher
     addNewActionPage(DebugPage.DEBUG_ACTION,DebugPage.class);
   }
 
+  /**
+   * Build a web page handle for the given action.
+   * @param actionName Name of the action to use.
+   * @return A new web page or <code>null</code> if not supported.
+   */
   public WebPage buildPage(String actionName)
   {
     WebPage ret=null;
@@ -40,6 +52,11 @@ public class WebRequestDispatcher
     return ret;
   }
 
+  /**
+   * Register a new action page.
+   * @param action Action code to use.
+   * @param clazz Implementation class of the web page handler implementation.
+   */
   public final void addNewActionPage(String action, Class<? extends WebPage> clazz)
   {
   	_actionToPage.put(action,clazz);

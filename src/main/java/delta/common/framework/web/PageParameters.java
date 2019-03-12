@@ -5,6 +5,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Base class for page parameters.
+ * @author DAM
+ */
 public class PageParameters
 {
   private static final String ACTION="ACTION";
@@ -23,16 +27,29 @@ public class PageParameters
     _appname=appName;
   }
 
+  /**
+   * Get the application name.
+   * @return the application name.
+   */
   public String getApplicationName()
   {
     return _appname;
   }
 
+  /**
+   * Set the value of a parameter.
+   * @param paramName Name of the parameter to set.
+   * @param value Value to set.
+   */
   public void setParameter(String paramName, Object value)
   {
     _parameters.put(paramName,value);
   }
 
+  /**
+   * Build an URL part for this set of parameters.
+   * @return an URL string.
+   */
   public String build()
   {
     StringBuilder sb=new StringBuilder(getApplicationName());
@@ -55,6 +72,10 @@ public class PageParameters
     return sb.toString();
   }
 
+  /**
+   * Get the action for this page.
+   * @return an action code.
+   */
   public String getAction()
   {
     return "NONE";

@@ -5,6 +5,10 @@ import org.apache.log4j.Logger;
 import delta.common.framework.web.utils.WebLoggers;
 import delta.common.utils.misc.ClassResolver;
 
+/**
+ * Test class for the web servlets.
+ * @author DAM
+ */
 public class MainTestWebServlet
 {
   private static final Logger _logger=WebLoggers.getWebLogger();
@@ -12,6 +16,14 @@ public class MainTestWebServlet
   private String _action="PLACES";
   private WebApplication _app;
 
+  /**
+   * Do it:
+   * <ul>
+   * <li>start application,
+   * <li>handle a simple request,
+   * <li>close application.
+   * </ul>
+   */
   public void go()
   {
     if (_app==null) return;
@@ -57,7 +69,11 @@ public class MainTestWebServlet
       }
     }
   }
-  
+
+  /**
+   * Main method for this test.
+   * @param args Fully qualified name of the web application class.
+   */
   public static void main(String[] args)
   {
     if (args.length>=1)

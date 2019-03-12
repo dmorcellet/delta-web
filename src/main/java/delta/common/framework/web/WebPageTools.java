@@ -2,15 +2,28 @@ package delta.common.framework.web;
 
 import java.io.PrintWriter;
 
+/**
+ * Tool methods to build HTML pages.
+ * @author DAM
+ */
 public class WebPageTools
 {
   protected PrintWriter _pw;
 
+  /**
+   * Constructor.
+   * @param pw Output writer.
+   */
   public WebPageTools(PrintWriter pw)
   {
     _pw=pw;
   }
 
+  /**
+   * Write a page header.
+   * @param title Page title.
+   * @param pw Output writer.
+   */
   public static void generatePageHeader(String title, PrintWriter pw)
   {
     // HTML 3.2
@@ -29,12 +42,20 @@ public class WebPageTools
     //pw.println("<body text=\"#000000\" bgcolor=\"#FFFFFF\" link=\"#0000EE\" vlink=\"#551A8B\" alink=\"#FF0000\" background=\"ressources/fond.gif\">");
   }
 
+  /**
+   * Write an horizontal ruler.
+   * @param pw Output writer.
+   */
   public static void generateHorizontalRuler(PrintWriter pw)
   {
     pw.println("<hr>");
     //pw.println("<hr width=\"100%\">");
   }
 
+  /**
+   * Write a page footer.
+   * @param pw Output writer.
+   */
   public static void generatePageFooter(PrintWriter pw)
   {
     generateHorizontalRuler(pw);

@@ -70,7 +70,7 @@ public abstract class WebPage
    */
   public String getMIMEType()
   {
-    return "text/html";
+    return "text/html; charset=ISO-8859-1";
   }
 
   /**

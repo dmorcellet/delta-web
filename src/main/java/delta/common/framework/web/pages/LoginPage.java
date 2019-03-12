@@ -11,6 +11,9 @@ import delta.common.framework.web.WebPageTools;
  */
 public class LoginPage extends WebPage
 {
+  /**
+   * 'login' action.
+   */
   public static final String LOGIN_ACTION="LOGIN";
 
   @Override
