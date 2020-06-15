@@ -6,7 +6,7 @@ import delta.common.utils.traces.UtilsLoggers;
 
 /**
  * Find parameters values in a chain of parameter nodes.
- * @author dm
+ * @author DAM
  */
 public class ParameterFinder
 {
