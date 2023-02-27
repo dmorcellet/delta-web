@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 
 import delta.common.framework.web.pages.DebugPage;
 import delta.common.framework.web.pages.LoginPage;
-import delta.common.framework.web.utils.WebLoggers;
 
 /**
  * Dispatcher for web requests.
@@ -14,7 +13,7 @@ import delta.common.framework.web.utils.WebLoggers;
  */
 public class WebRequestDispatcher
 {
-  private static final Logger _logger=WebLoggers.getWebLogger();
+  private static final Logger LOGGER=Logger.getLogger(WebRequestDispatcher.class);
 
   private HashMap<String,Class<? extends WebPage>> _actionToPage;
 
@@ -46,7 +45,7 @@ public class WebRequestDispatcher
     }
     catch(Exception e)
     {
-      _logger.error("",e);
+      LOGGER.error("",e);
     }
 
     return ret;

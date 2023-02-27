@@ -2,7 +2,6 @@ package delta.common.framework.web;
 
 import org.apache.log4j.Logger;
 
-import delta.common.framework.web.utils.WebLoggers;
 import delta.common.utils.misc.ClassResolver;
 
 /**
@@ -11,7 +10,7 @@ import delta.common.utils.misc.ClassResolver;
  */
 public class MainTestWebServlet
 {
-  private static final Logger _logger=WebLoggers.getWebLogger();
+  private static final Logger LOGGER=Logger.getLogger(MainTestWebServlet.class);
 
   private String _action="PLACES";
   private WebApplication _app;
@@ -40,7 +39,7 @@ public class MainTestWebServlet
       }
       catch(Exception e)
       {
-        _logger.error("Page generation error",e);
+        LOGGER.error("Page generation error",e);
       }
       String text=response.getTextResponse();
       System.out.println(text);
@@ -48,7 +47,7 @@ public class MainTestWebServlet
     }
     catch(Exception e)
     {
-      _logger.error("",e);
+      LOGGER.error("",e);
     }
   }
 
@@ -65,7 +64,7 @@ public class MainTestWebServlet
       }
       catch(Exception e)
       {
-        _logger.error("",e);
+        LOGGER.error("",e);
       }
     }
   }

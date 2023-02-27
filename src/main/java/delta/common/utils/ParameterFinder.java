@@ -2,15 +2,13 @@ package delta.common.utils;
 
 import org.apache.log4j.Logger;
 
-import delta.common.utils.traces.UtilsLoggers;
-
 /**
  * Find parameters values in a chain of parameter nodes.
  * @author DAM
  */
 public class ParameterFinder
 {
-  private static final Logger _logger=UtilsLoggers.getUtilsLogger();
+  private static final Logger LOGGER=Logger.getLogger(ParameterFinder.class);
 
   /**
    * Get the value of an integer parameter.
@@ -37,12 +35,12 @@ public class ParameterFinder
         }
         catch(NumberFormatException nfe)
         {
-          _logger.error("",nfe);
+          LOGGER.error("",nfe);
         }
       }
       else
       {
-        _logger.warn("Type not supported for int conversion : "+pValue.getClass().getName());
+        LOGGER.warn("Type not supported for int conversion : "+pValue.getClass().getName());
       }
     }
     return ret;
@@ -86,12 +84,12 @@ public class ParameterFinder
         }
         catch(NumberFormatException nfe)
         {
-          _logger.error("",nfe);
+          LOGGER.error("",nfe);
         }
       }
       else
       {
-        _logger.warn("Type not supported for long conversion : "+pValue.getClass().getName());
+        LOGGER.warn("Type not supported for long conversion : "+pValue.getClass().getName());
       }
     }
     return ret;
@@ -128,7 +126,7 @@ public class ParameterFinder
       }
       else
       {
-        _logger.warn("Type not supported for boolean conversion : "+pValue.getClass().getName());
+        LOGGER.warn("Type not supported for boolean conversion : "+pValue.getClass().getName());
       }
     }
     return ret;

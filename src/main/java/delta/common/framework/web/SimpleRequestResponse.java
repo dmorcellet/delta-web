@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 
 import org.apache.log4j.Logger;
 
-import delta.common.framework.web.utils.WebLoggers;
 import delta.common.utils.text.EncodingNames;
 
 /**
@@ -16,7 +15,8 @@ import delta.common.utils.text.EncodingNames;
  */
 public class SimpleRequestResponse implements RequestResponse
 {
-  private static final Logger _logger=WebLoggers.getWebLogger();
+  private static final Logger LOGGER=Logger.getLogger(SimpleRequestResponse.class);
+
   private ByteArrayOutputStream _bos;
   private PrintWriter _writer;
   private String _contentType;
@@ -44,7 +44,7 @@ public class SimpleRequestResponse implements RequestResponse
     {
       _writer=new PrintWriter(_bos);
       _encoding=null;
-      _logger.error("Invalid encoding ["+encoding+"]",e);
+      LOGGER.error("Invalid encoding ["+encoding+"]",e);
     }
     _contentType="text/html";
   }
@@ -98,7 +98,7 @@ public class SimpleRequestResponse implements RequestResponse
     catch(Exception e)
     {
       // Should not happen since the encoding has been validated.
-      _logger.error("Cannot build text response string",e);
+      LOGGER.error("Cannot build text response string",e);
     }
     return ret;
   }
