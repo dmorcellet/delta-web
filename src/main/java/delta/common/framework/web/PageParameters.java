@@ -1,5 +1,8 @@
 package delta.common.framework.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -67,9 +70,26 @@ public class PageParameters
       sb.append("&amp;");
       sb.append(entry.getKey());
       sb.append('=');
-      sb.append(entry.getValue());
+      String value=entry.getValue().toString();
+      value=encodeValue(value);
+      sb.append(value);
     }
-    return sb.toString();
+    String url=sb.toString();
+    return url;
+  }
+
+  private String encodeValue(String input)
+  {
+    String ret=input;
+    try
+    {
+      ret=URLEncoder.encode(input,StandardCharsets.UTF_8.toString());
+    }
+    catch(UnsupportedEncodingException uee)
+    {
+      uee.printStackTrace();
+    }
+    return ret;
   }
 
   /**
