@@ -2,7 +2,8 @@ package delta.common.framework.web;
 
 import java.util.HashMap;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import delta.common.framework.web.pages.DebugPage;
 import delta.common.framework.web.pages.LoginPage;
@@ -13,7 +14,7 @@ import delta.common.framework.web.pages.LoginPage;
  */
 public class WebRequestDispatcher
 {
-  private static final Logger LOGGER=Logger.getLogger(WebRequestDispatcher.class);
+  private static final Logger LOGGER=LoggerFactory.getLogger(WebRequestDispatcher.class);
 
   private HashMap<String,Class<? extends WebPage>> _actionToPage;
 

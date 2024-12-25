@@ -1,6 +1,7 @@
 package delta.common.framework.web;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import delta.common.utils.misc.ClassResolver;
 
@@ -10,7 +11,7 @@ import delta.common.utils.misc.ClassResolver;
  */
 public class MainTestWebServlet
 {
-  private static final Logger LOGGER=Logger.getLogger(MainTestWebServlet.class);
+  private static final Logger LOGGER=LoggerFactory.getLogger(MainTestWebServlet.class);
 
   private String _action="PLACES";
   private WebApplication _app;

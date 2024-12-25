@@ -5,7 +5,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import delta.common.utils.text.EncodingNames;
 
@@ -15,7 +16,7 @@ import delta.common.utils.text.EncodingNames;
  */
 public class SimpleRequestResponse implements RequestResponse
 {
-  private static final Logger LOGGER=Logger.getLogger(SimpleRequestResponse.class);
+  private static final Logger LOGGER=LoggerFactory.getLogger(SimpleRequestResponse.class);
 
   private ByteArrayOutputStream _bos;
   private PrintWriter _writer;

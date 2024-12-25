@@ -1,6 +1,7 @@
 package delta.common.utils;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Find parameters values in a chain of parameter nodes.
@@ -8,7 +9,7 @@ import org.apache.log4j.Logger;
  */
 public class ParameterFinder
 {
-  private static final Logger LOGGER=Logger.getLogger(ParameterFinder.class);
+  private static final Logger LOGGER=LoggerFactory.getLogger(ParameterFinder.class);
 
   /**
    * Get the value of an integer parameter.

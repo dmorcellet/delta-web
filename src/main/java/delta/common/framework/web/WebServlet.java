@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import delta.common.utils.time.chronometers.Chronometer;
 import delta.common.utils.time.chronometers.ChronometerManager;
@@ -20,7 +21,7 @@ import delta.common.utils.time.chronometers.ChronometerManager;
  */
 public abstract class WebServlet extends HttpServlet
 {
-  private static final Logger LOGGER=Logger.getLogger(WebServlet.class);
+  private static final Logger LOGGER=LoggerFactory.getLogger(WebServlet.class);
 
   private static final String USER_CONTEXT="USER_CONTEXT";
   private WebApplication _application;
