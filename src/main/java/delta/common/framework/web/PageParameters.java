@@ -8,12 +8,17 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Base class for page parameters.
  * @author DAM
  */
 public class PageParameters
 {
+  private static final Logger LOGGER=LoggerFactory.getLogger(PageParameters.class);
+
   private static final String ACTION="ACTION";
   protected HashMap<String,Object> _parameters;
   private String _appname;
@@ -87,7 +92,7 @@ public class PageParameters
     }
     catch(UnsupportedEncodingException uee)
     {
-      uee.printStackTrace();
+      LOGGER.warn("Encoding error on ["+input+"]",uee);
     }
     return ret;
   }
